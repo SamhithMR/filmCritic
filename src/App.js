@@ -12,15 +12,16 @@ import PageNotFound from './pages/pagenotfound/PageNotFound'
 
 
 function App() {
-  const { data, err, loading } = FetchData(`/movie/553`)
+  const { data, err, loading } = FetchData(`/movie/550`)
 
 
   return (
     <div className="App">
 
-      {loading && <p>Loading...</p>}
-      {err && <p>{err}</p>}
-      {data && <p>{data.title}</p>}
+      {/* {loading && <p>Loading...</p>} */}
+      {/* {err && <p>{err}</p>} */}
+      {/* {data && <p>{JSON.stringify(data)}</p>} */}
+      {/* {data && <p>{data?.backdrop_path}</p>} */}
 
       <Routes>
         <Route path="/" element={<Home />}/>
