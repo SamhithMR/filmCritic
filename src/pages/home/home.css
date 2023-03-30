@@ -1,15 +1,23 @@
-.banner{
-    position: relative;
-    max-height: 100vh;
+*{
+    /* outline: 1px solid red; */
 }
-.banner img{
+body{
+    background-color: #16253d;
+}
+.banner {
+    position: relative;
+    height: 100vh;
+}
+
+.banner img {
     position: absolute;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.banner_contents{
+
+.banner_contents {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -18,40 +26,83 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 70%;
 }
-.banner_contents h2{
-    font-size: 10vh;
+
+.banner_contents h2 {
+    font-size: 15vh;
     color: #fe5555;
 }
-.banner_contents p{
-    font-size: 3.2vh;
+
+.banner_contents p {
+    font-size: 5vh;
     font-weight: 900;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #bdbdbd;
 }
 
-.banner_contents .input_feild{
+.banner_contents .input_feild {
     width: 100%;
 }
-.banner_contents input{
+
+.banner_contents input {
     width: 100%;
-    padding: 0.6rem 0;
+    padding: 1rem 0;
     border-radius: 10px;
     border: none;
 }
-.input_feild button{
+
+.input_feild button {
     position: absolute;
     right: 0;
-    padding: 0.6rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 5px;
     border: none;
     color: #ffffff;
-    background: linear-gradient(120deg,#fe5555, #658ac5);
+    background: linear-gradient(120deg, #fe5555, #658ac5);
 }
-.mask{
+
+.mask {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, #2e4873 0%, transparent 100%);
+    background: linear-gradient(to top, #16253d 0%, transparent 100%);
+}
+
+
+/***** popular *****/
+.popular {
+    width: 100%;
+}
+
+.cards_heading {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cards_heading h1{
+    color: #ededed;
+    font-size: 2rem;
+}
+.cards_heading button{
+    margin: 0 0.4rem;
+    padding: 0.4rem;
+    width: 6rem;
+    font-size: 1rem;
+    border: none;
+    border-radius:  10px;
+}
+
+.cards {
+    margin: 0 auto;
+    display: flex;
+    overflow-x: scroll;
+    align-items: start;
+    justify-content: left;
+    gap: 1rem;
+    margin: 0 auto;
+    width: 100%;
 }

@@ -1,0 +1,27 @@
+.card{
+    flex:0 0 auto;
+    width: 250px;
+    height: 450px;
+    display: grid;
+    grid-template-rows: 80% 20%;
+    padding: 0 0.6rem;
+    border-radius: 15px;
+    color: #fff;
+}
+
+.card_img{
+    border-radius: 15px;
+    position: relative;
+}
+.card_img > *{
+    width: 100%;
+    height: 100%;
+}
+
+.card_img img{
+    width: 100%;
+    height: 100%;
+}
+.date{
+    color: #a8a8a8;
+}

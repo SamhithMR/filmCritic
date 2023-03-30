@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Img from '../../components/Img'
 import FetchData from '../../hooks/FetchData'
-import {BannerSkeleton} from '../../components/skeleton'
+import {BannerSkeleton} from '../../components/Skeleton'
 
 function Banner(){
     const { data, err, loading } = FetchData(`/movie/upcoming`)
