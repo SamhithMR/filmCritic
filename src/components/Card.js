@@ -1,5 +1,5 @@
 import Img from './Img'
-import './card.css'
+import './components.css'
 import dayjs from 'dayjs'
 import { CircularProgressbar , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';

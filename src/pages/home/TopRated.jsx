@@ -9,7 +9,7 @@ function TopRated(){
         setendPoint(value)
     }
     return(
-        <Carosel heading={"Top_rated"} data={data} loading={loading} endpoint={endpoint} endpoints={['movie','tv']} setEndpoint={setEndpoint}/>
+        <Carosel heading={"Top Rated"} data={data} loading={loading} endpoint={endpoint} endpoints={['movie','tv']} setEndpoint={setEndpoint}/>
         )
     }
     

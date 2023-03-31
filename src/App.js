@@ -25,8 +25,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/Search" element={<Search />}/>
-        <Route path="/Explore" element={<Explore />}/>
+        <Route path="/Search/:query" element={<Search />}/>
+        <Route path="/Explore/:mediaType" element={<Explore />}/>
         <Route path="/Details" element={<Details />}/>
         <Route path="*" element={<PageNotFound />}/>
       </Routes>
