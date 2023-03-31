@@ -9,7 +9,8 @@ import Details from './pages/details/Details'
 import Search from './pages/search/Search'
 import PageNotFound from './pages/pagenotfound/PageNotFound'
 
-
+import Header from './components/header'
+import Footer from './components/footer'
 
 function App() {
   const { data, err, loading } = FetchData(`/movie/550`)
@@ -23,6 +24,7 @@ function App() {
       {/* {data && <p>{JSON.stringify(data)}</p>} */}
       {/* {data && <p>{data?.backdrop_path}</p>} */}
 
+        <Header />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/Search/:query" element={<Search />}/>
@@ -30,6 +32,7 @@ function App() {
         <Route path="/Details" element={<Details />}/>
         <Route path="*" element={<PageNotFound />}/>
       </Routes>
+        <Footer />
 
     </div>
   );

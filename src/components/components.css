@@ -70,3 +70,55 @@
 .header a:hover{
     color: #fe5555;
 }
+
+
+/* footer */
+.footer{
+    width: 75%;
+    margin: 2.5rem auto;
+    color: #dedede;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.footer > *{
+    width: 100% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+.footer_description{
+    color: #a8a8a8;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.footer_icons{
+    font-size: 1.4rem;
+    gap: 2rem;
+    color: #fff;
+}
+
+.footer_icons > *{
+    background-color: #32425c;
+    border-radius: 50%;
+    border: none;
+    padding: 0.5rem;
+    transition: 250ms ease-in-out;
+}
+
+.footer_icons > *:hover{
+    background-color: #fe5555;
+}
+.footer_links > *:hover{
+    color: #fe5555;
+}
+
+.footer_links{
+   gap: 2.5rem;
+}
+@media screen and (max-width:720px) {
+    .footer{
+        width: 99%;
+    }
+}
