@@ -48,7 +48,7 @@ body{
 .banner_contents input {
     width: 100%;
     padding: 1rem 0;
-    border-radius: 10px;
+    border-radius: 50px;
     border: none;
 }
 
@@ -56,12 +56,15 @@ body{
     position: absolute;
     right: 0;
     padding: 1rem 2rem;
-    border-radius: 5px;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
     border: none;
     color: #ffffff;
     background: linear-gradient(120deg, #fe5555, #658ac5);
 }
-
+.xyz{
+    background-color: #389438;
+}
 .mask {
     position: absolute;
     bottom: 0;
@@ -96,6 +99,11 @@ body{
     border-radius:  10px;
 }
 
+.buttons{
+    background-color: #f1f1f1;
+    padding: 0.2rem;
+    border-radius: 10px;
+}
 .cards {
     margin: 0 auto;
     display: flex;
@@ -106,3 +114,19 @@ body{
     margin: 0 auto;
     width: 100%;
 }
+
+.cards::-webkit-scrollbar {
+    height: 0.2rem; /* Set the height of the scroll bar */
+  }
+  
+  .cards::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Set the color of the scroll thumb */
+  }
+  
+  .cards::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa; /* Set the color of the scroll thumb on hover */
+  }
+  
+  .cards::-webkit-scrollbar-corner {
+    background-color: transparent; /* Hide the scrollbar corner */
+  }
