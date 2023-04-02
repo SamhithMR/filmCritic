@@ -2,9 +2,10 @@
     flex:1 0 auto;
     width: 250px;
     height: 450px;
-    margin: auto;
+    margin:auto;
     display: grid;
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 78% 18%;
+    gap: 4%;
     padding: 0 0.6rem;
     border-radius: 15px;
     color: #fff;
@@ -34,9 +35,9 @@
     backdrop-filter: blur(3px);
     width:100%;
     z-index:10;
-    position:absolute;
+    /* position:absolute;
     top:0;
-    left:0;
+    left:0; */
     color:#fff;
 }
 .header .wrapper{

@@ -2,7 +2,7 @@ import Card from './Card'
 import React, {useState } from "react"
 import { CardSkeleton } from "./Skeleton.js"
 
-function Carosel({data,loading,heading, endpoints, setEndpoint, setEndpoint2,endpoint2 ,endpoint}){
+function Carosel({data,loading,heading, endpoints, setEndpoint, setEndpoint2,endpoint2 ,endpoint, className}){
     return (
     <div className="popular">
         <div className="cards_heading">
@@ -18,7 +18,8 @@ function Carosel({data,loading,heading, endpoints, setEndpoint, setEndpoint2,end
             </div>)
             }
         </div>
-        <div className="cards">
+        
+        <div className={`cards ${className}`}>
             {!loading 
             ? (data?.results.map((result, i) => <Card result={result} key={i}/>)) 
             :  ([1,2,3,4,5,6].map((_, i) => (<CardSkeleton key={i} />)))

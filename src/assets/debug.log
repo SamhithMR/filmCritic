@@ -48,3 +48,4 @@
 [0331/203600.065:WARNING:dns_config_service_win.cc(668)] Failed to read DnsConfig.
 [0331/203605.084:WARNING:dns_config_service_win.cc(668)] Failed to read DnsConfig.
 [0331/203610.109:WARNING:dns_config_service_win.cc(668)] Failed to read DnsConfig.
+[0401/002007.685:ERROR:browser_gpu_channel_host_factory.cc(139)] Failed to launch GPU process.

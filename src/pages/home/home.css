@@ -1,11 +1,13 @@
 *{
     /* outline: 1px solid red; */
+    margin: 0;
+    padding: 0;
 }
 body{
     background-color: #16253d;
 }
 .banner {
-    position: relative;
+    /* position: relative; */
     height: 100vh;
 }
 
@@ -95,7 +97,7 @@ body{
     color: #ededed;
     font-size: 2rem;
 }
-.cards_heading button{
+.cards_heading button, .custombutton{
     margin: 0 0.4rem;
     padding: 0.4rem;
     width: 6rem;
@@ -110,13 +112,21 @@ body{
     border-radius: 10px;
 }
 .cards {
-    margin: auto;
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
     gap: 1rem;
     margin: 0 auto;
     width: 100%;
+}
+.colwise{
+    overflow-y: hidden;
+    gap: 1rem;
+    width: 100%;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .cards::-webkit-scrollbar {
@@ -134,3 +144,16 @@ body{
   .cards::-webkit-scrollbar-corner {
     background-color: transparent; /* Hide the scrollbar corner */
   }
+
+button{
+    cursor: pointer;
+}
+
+.resultNotFound{
+    font-size: 3rem;
+    color: #fff;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 3rem 0;
+}

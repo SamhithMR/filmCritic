@@ -12,3 +12,8 @@ export function BannerSkeleton(){
             </SkeletonTheme>)
 }
 
+export function ImgSkeleton(){
+    return (<SkeletonTheme baseColor="#202020" highlightColor="#444">
+                <Skeleton rectangle width={"100%"} height={"100%"}/>
+            </SkeletonTheme>)
+}
