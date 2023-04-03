@@ -28,7 +28,6 @@ function Search(){
         setPageNum((prev) => prev + 1)
     }
     
-
     return (
         <div>
                {items.length > 0 

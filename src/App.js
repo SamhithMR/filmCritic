@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 
 import './App.css';
-import FetchData from './hooks/FetchData'
+import fetchDataFromApi from './utils/fetchDataFromApi'
 
 import Home from './pages/home/Home'
 import Explore from './pages/explore/Explore'
@@ -11,27 +11,36 @@ import PageNotFound from './pages/pagenotfound/PageNotFound'
 
 import Header from './components/header'
 import Footer from './components/footer'
+import { useDispatch } from 'react-redux'
+import { useEffect } from "react";
+import { getGenres } from "./store/homeSlice";
 
 function App() {
-  const { data, err, loading } = FetchData(`/movie/550`)
+
+  const dispatch = useDispatch()
+  const data = []
+
+  useEffect(() => {
+      ['movie','tv'].map((endpoint)=>{
+          fetchDataFromApi(`/genre/${endpoint}/list`)
+          .then((res)=>{res.genres.forEach((x)=>data.push({'value':x.id,'label':x.name}))})
+          .then(()=>{ if(endpoint == 'tv') dispatch(getGenres(data))
+          })
+          .catch((err)=>{console.log(err.message);})
+        })
+    },[])
 
 
   return (
     <div className="App">
-
-      {/* {loading && <p>Loading...</p>} */}
-      {/* {err && <p>{err}</p>} */}
-      {/* {data && <p>{JSON.stringify(data)}</p>} */}
-      {/* {data && <p>{data?.backdrop_path}</p>} */}
-
         <Header />
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/Search/:query" element={<Search />}/>
-        <Route path="/Explore/:mediaType" element={<Explore />}/>
-        <Route path="/Details" element={<Details />}/>
-        <Route path="*" element={<PageNotFound />}/>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/Search/:query" element={<Search />}/>
+          <Route path="/explore/:mediaType" element={<Explore />}/>
+          <Route path="/Details/:id" element={<Details />}/>
+          <Route path="*" element={<PageNotFound />}/>
+        </Routes>
         <Footer />
 
     </div>

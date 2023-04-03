@@ -1,10 +1,4 @@
-import React from "react";
-
 function Details(){
-    return(
-        <>
-        <p>details</p>
-        </>
-    )
+   return (<></>)
 }
 export default Details

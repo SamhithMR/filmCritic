@@ -149,6 +149,7 @@ button{
     cursor: pointer;
 }
 
+/* search */
 .resultNotFound{
     font-size: 3rem;
     color: #fff;
@@ -156,4 +157,16 @@ button{
     width: 100%;
     text-align: center;
     margin: 3rem 0;
+}
+
+/* explore */
+.explore_selector{
+    display: flex;
+    gap: 1rem;
+}
+.abc{
+    min-width: 18vw;
+}
+#filter{
+    padding: 0.2rem 0.6rem;
 }
