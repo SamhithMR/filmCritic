@@ -4,12 +4,15 @@ import dayjs from 'dayjs'
 import { CircularProgressbar , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Card({result}){
+function Card({result, mediaType}){
+    const navigate = useNavigate()
     
 const [value, setValue] = useState(result?.vote_average)
 
-    return (<div className='card'>
+    return (
+    <div className='card' onClick={()=>(navigate(`/Details/${mediaType}/${result?.id}`))}>
         <div className='card_img'>
             <Img url={result?.poster_path}/>
             <div style={{ width: 40, height: 40, "position": "absolute", "left":"0.5rem", "bottom":"-1rem"}}>

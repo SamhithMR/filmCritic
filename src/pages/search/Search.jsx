@@ -46,7 +46,7 @@ function Search(){
                         loader={<CardSkeleton/>}
                         className='colwise'
                         >
-                        {items?.map((result, i) => <Card result={result} key={i}/>)} 
+                        {items?.map((result, i) => <Card result={result} mediaType={endpoint} key={i}/>)} 
                         </InfiniteScroll>
                     </div></> 
                 : (<span className="resultNotFound">Sorry, Results not found!</span>)}

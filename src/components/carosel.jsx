@@ -4,7 +4,7 @@ import { CardSkeleton } from "./Skeleton.js"
 
 function Carosel({data,loading,heading, endpoints, setEndpoint, setEndpoint2,endpoint2 ,endpoint, className}){
     return (
-    <div className="popular">
+    <div className="popular" >
         <div className="cards_heading">
             <h1>{heading}</h1>
             <div className="buttons">
@@ -21,7 +21,7 @@ function Carosel({data,loading,heading, endpoints, setEndpoint, setEndpoint2,end
         
         <div className={`cards ${className}`}>
             {!loading 
-            ? (data?.results.map((result, i) => <Card result={result} key={i}/>)) 
+            ? (data?.results.map((result, i) => <Card result={result} mediaType={endpoint2} key={i}/>)) 
             :  ([1,2,3,4,5,6].map((_, i) => (<CardSkeleton key={i} />)))
             }
         </div>

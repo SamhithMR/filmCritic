@@ -15,8 +15,9 @@ function Banner(){
         setImage(data && data?.results[Math.floor(Math.random() * data?.results?.length)]?.backdrop_path)
     },[data])
     
-    return (<div className="banner">
-        {(loading || err) ? <BannerSkeleton/> : <Img url={image} alt="Banner image" />}
+    return (
+    <div className="banner">
+        <div className="banaer_image">{(loading || err) ? <BannerSkeleton/> : <Img url={image} alt="Banner image" />}</div>
         <div className="mask"></div>
         <div className="banner_contents">
             <h2>welcome.</h2>

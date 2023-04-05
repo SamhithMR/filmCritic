@@ -10,7 +10,7 @@ function Home(){
     return(
         <>
         <Banner />
-        <Trending />
+        <Trending/>
         <Popular />
         <TopRated />
         </>

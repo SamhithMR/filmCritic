@@ -33,41 +33,41 @@ function Explore(){
     
     return (
         <div>
-                <><div>
-                        <div style={{width:'90%',display:'flex','justifyContent':'space-between', margin:'1rem auto'}}>
-                            <div style={{color:'#fff'}}>{`explore ${mediaType}`}</div>
-                            <div className="explore_selector">
-                                <MultiSelect
-                                    style={{border:'none', borderRadius:'10px',padding:'1rem'}}
-                                    hasSelectAll={false}
-                                    options={options}
-                                    value={selected}
-                                    onChange={setSelected}
-                                    labelledBy="Select gener"
-                                    className="abc"
-                                />
-                                <select name="filter" id="filter" onChange={(e)=>(setFilter(e.target.value))}>
-                                    <option value="popularity.desc">Popularity Descending</option>
-                                    <option value="popularity.asc">Popularity Ascending</option>
-                                    <option value="vote_average.desc">Rating Descending</option>
-                                    <option value="vote_average.asc ">Rating Ascending</option>
-                                    <option value="primary_release_date.desc">Release Date Descending</option>
-                                    <option value="primary_release_date.asc">Release Date Ascending</option>
-                                    <option value="original_title.asc">Title (A-Z)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <InfiniteScroll
-                        dataLength={items.length}
-                        next={() => (setPageNum((prev) => prev + 1))}
-                        hasMore={true}
-                        loader={<CardSkeleton/>}
-                        className='colwise'
-                        >
-                        {items?.map((result, i) => <Card result={result} key={i}/>)} 
-                        </InfiniteScroll>
-                    </div></> 
-               {(!loading && items.length < 0)&& <div className="resultNotFound">sorry results not found</div>}
+            <div style={{width:'90%',display:'flex','justifyContent':'space-between', margin:'1rem auto'}}>
+                <div style={{color:'#fff'}}>{`explore ${mediaType}`}</div>
+                <div className="explore_selector">
+                    <MultiSelect
+                        style={{border:'none', borderRadius:'10px',padding:'1rem'}}
+                        hasSelectAll={false}
+                        options={options}
+                        value={selected}
+                        onChange={setSelected}
+                        labelledBy="Select gener"
+                        className="abc"
+                    />
+                    <select name="filter" id="filter" onChange={(e)=>(setFilter(e.target.value))}>
+                        <option value="popularity.desc">Popularity Descending</option>
+                        <option value="popularity.asc">Popularity Ascending</option>
+                        <option value="vote_average.desc">Rating Descending</option>
+                        <option value="vote_average.asc ">Rating Ascending</option>
+                        <option value="primary_release_date.desc">Release Date Descending</option>
+                        <option value="primary_release_date.asc">Release Date Ascending</option>
+                        <option value="original_title.asc">Title (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+
+            <InfiniteScroll
+                dataLength={items.length}
+                next={() => (setPageNum((prev) => prev + 1))}
+                hasMore={true}
+                loader={<CardSkeleton/>}
+                className='colwise'
+                >
+                {items?.map((result, i) => <Card result={result} mediaType={mediaType} key={i}/>)} 
+            </InfiniteScroll>
+                    
+            {(!loading && items.length < 0)&& <div className="resultNotFound">sorry results not found</div>}
         </div>
         )
 }

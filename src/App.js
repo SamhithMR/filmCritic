@@ -38,7 +38,7 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/Search/:query" element={<Search />}/>
           <Route path="/explore/:mediaType" element={<Explore />}/>
-          <Route path="/Details/:id" element={<Details />}/>
+          <Route path="/Details/:mediaType/:id" element={<Details />}/>
           <Route path="*" element={<PageNotFound />}/>
         </Routes>
         <Footer />
