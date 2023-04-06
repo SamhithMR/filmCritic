@@ -21,8 +21,8 @@ function Details(){
   };
 
    return (
+      <>
       <div className='details'>
-         {JSON.stringify(credits?.data?.crew?.filter((x)=>x.job == "Director").length)}
          {/* background */}
          <div className='mask1' />
          <div className='mask2' />
@@ -64,22 +64,44 @@ function Details(){
                   <p>Inspired by a true story, an oddball group of cops, criminals, tourists and teens converge in a Georgia forest where a 500-pound black bear goes on a murderous rampage after unintentionally ingesting cocaine.</p>
                </div>
                <div className="status">
-                  <p>status: {data?.status ? <span>{data?.status}</span> : <span>{" "}</span>}</p>
-                  <p>Runtime: {data?.runtime ? <span> {toHoursAndMinutes(data?.runtime)}</span> : <span>{" "}</span>}</p>
-                  <p>release_date: {data?.release_date ? <span> {dayjs(data?.release_date).format("MMM D, YYYY")}</span> : <span>{" "}</span>}</p>
+                  <p>status: {data?.status ? <span className="res">{data?.status}</span> : <span className="res">{" "}</span>}</p>
+                  <p>Runtime: {data?.runtime ? <span className="res"> {toHoursAndMinutes(data?.runtime)}</span> : <span className="res">{" "}</span>}</p>
+                  <p>release_date: {data?.release_date ? <span className="res"> {dayjs(data?.release_date).format("MMM D, YYYY")}</span> : <span className="res">{" "}</span>}</p>
                </div>
                <div className="director">
-                  <p>Director:{credits?.data?.crew ? credits?.data?.crew?.filter((x)=>x.job == "Director").map((x)=> {return <span>{JSON.stringify(x.name)}</span>})
-                                                   : <span>{" "}</span>}</p>
+                  <p>Director: {credits?.data?.crew ? credits?.data?.crew?.filter((x)=>x.job == "Director")
+                                                                         .map((x,i)=> {return <span className="res">{i > 0 ? ", " : ""}{x.name}</span>})
+                                                   : <span className="res">{" "}</span>}</p>
                </div>
                <div className="writer">
-                  <p>Director:{credits?.data?.crew ? credits?.data?.crew?.filter((x)=> x.job === "Screenplay" || x.job === "Story" || x.job === "Writer").map((x)=> {return <span>{JSON.stringify(x.name)}</span>})
-                                                   : <span>{" "}</span>}</p>
+                  <p>writer: {credits?.data?.crew ? credits?.data?.crew?.filter((x)=> x.job === "Screenplay" || x.job === "Story" || x.job === "Writer")
+                                                                       .map((y,i)=> {return  <span className="res">{i > 0 ? ", " : ""}{y.name}</span>})
+                                                   : <span className="res">{" "}</span>}</p>
 
                </div>
             </div>
          </div>
       </div>
+      <div className='casts_container'>
+        <h5>Top Casts</h5>
+        <div className='casts'>
+           {credits?.data?.cast && credits?.data?.cast?.map((x)=> {
+             return (
+               <div className='cast'>
+                  <div className="cast_img">
+                     <div className="xyz">
+                        <Img url={x.profile_path} />
+                     </div>
+                  </div>
+                  <div className='cast_details'>
+                     <h5>{x.name}</h5>
+                     <span className="res">{x.character}</span>
+                  </div>
+               </div>)
+           })}
+        </div>
+      </div>
+      </>
    )
 }
 export default Details
