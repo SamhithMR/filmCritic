@@ -8,11 +8,20 @@ import {BannerSkeleton,ImgSkeleton} from '../../components/Skeleton'
 import dayjs from 'dayjs'
 import { CircularProgressbar , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import YouTube from 'react-youtube';
+import play_png from '../../assets/play.png'
 
 function Details(){
    const {id,mediaType} = useParams()
    const {data, loading} = FetchData(`/${mediaType}/${id}`)
    const credits = FetchData(`/${mediaType}/${id}/credits`)
+   const video= FetchData(`/${mediaType}/${id}/videos`);
+
+   const [isVisible, setIsVisible] = useState(false);
+   const handleToggle = () => {
+     setIsVisible(!isVisible);
+   };
+ 
 
    const toHoursAndMinutes = (totalMinutes) => {
       const hours = Math.floor(totalMinutes / 60);
@@ -22,6 +31,7 @@ function Details(){
 
    return (
       <>
+      {/* <p>{video?.data?.results?.[0].key}</p> */}
       <div className='details'>
          {/* background */}
          <div className='mask1' />
@@ -53,10 +63,17 @@ function Details(){
                                  textColor: "#fff",
                                  pathColor: `${data?.vote_average > 6.5  ? "#389438" : data?.vote_average < 3.0 ? "#fe5555" : "#658ac5"}`,
                                  trailColor: "transparent",
-                                 textSize: '13px',
+                                 textSize: '13px'
                               })
                         } 
                         text={`${data?.vote_average * 10}%`}/>
+                  </div>
+                  <div className='video_button'>
+                     <img src={play_png} onClick={handleToggle} style={{"cursor":"pointer"}} className="play_icon" alt="" />
+                     {isVisible ?<div className="videoPopUpBtn">
+                                    <div className="videoMask" onClick={handleToggle}></div>
+                                    <div className="player"><p onClick={handleToggle} style={{padding:'0.4rem 0', cursor:'pointer'}}>close</p><YouTube videoId={video?.data?.results?.[0].key}/></div>
+                                 </div> : ""}
                   </div>
                </div>
                <div className="overview">
