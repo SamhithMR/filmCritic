@@ -8,16 +8,22 @@ import {BannerSkeleton,ImgSkeleton} from '../../components/Skeleton'
 import dayjs from 'dayjs'
 import { CircularProgressbar , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import YouTube from 'react-youtube';
+import Card from '../../components/Card'
+
 import play_png from '../../assets/play.png'
+import VideoPopUp from '../../components/videoPopUp'
 
 function Details(){
    const {id,mediaType} = useParams()
    const {data, loading} = FetchData(`/${mediaType}/${id}`)
    const credits = FetchData(`/${mediaType}/${id}/credits`)
    const video= FetchData(`/${mediaType}/${id}/videos`);
+   const similarMovie= FetchData(`/${mediaType}/${id}/similar`);
+   const Recommendations= FetchData(`/${mediaType}/${id}/recommendations`);
+   
 
    const [isVisible, setIsVisible] = useState(false);
+   const [videoId, setVideoID] = useState(false);
    const handleToggle = () => {
      setIsVisible(!isVisible);
    };
@@ -32,6 +38,7 @@ function Details(){
    return (
       <>
       {/* <p>{video?.data?.results?.[0].key}</p> */}
+      {isVisible ?<VideoPopUp handleToggle={handleToggle} videoId={videoId}/>: ""}
       <div className='details'>
          {/* background */}
          <div className='mask1' />
@@ -69,16 +76,13 @@ function Details(){
                         text={`${data?.vote_average * 10}%`}/>
                   </div>
                   <div className='video_button'>
-                     <img src={play_png} onClick={handleToggle} style={{"cursor":"pointer"}} className="play_icon" alt="" />
-                     {isVisible ?<div className="videoPopUpBtn">
-                                    <div className="videoMask" onClick={handleToggle}></div>
-                                    <div className="player"><p onClick={handleToggle} style={{padding:'0.4rem 0', cursor:'pointer'}}>close</p><YouTube videoId={video?.data?.results?.[0].key}/></div>
-                                 </div> : ""}
+                  <img src={play_png} onClick={() => { handleToggle(); setVideoID(video?.data?.results?.[0].key) }} style={{ "cursor": "pointer" }} className="play_icon" alt="" />
+                     {/* {isVisible ?<VideoPopUp handleToggle={handleToggle} videoId={video?.data?.results?.[0].key}/>: ""} */}
                   </div>
                </div>
                <div className="overview">
                   <h1>Overview</h1>
-                  <p>Inspired by a true story, an oddball group of cops, criminals, tourists and teens converge in a Georgia forest where a 500-pound black bear goes on a murderous rampage after unintentionally ingesting cocaine.</p>
+                  <p>{data?.overview ? <span className="res">{data?.overview}</span> : <span className="res">{" "}</span>}</p>
                </div>
                <div className="status">
                   <p>status: {data?.status ? <span className="res">{data?.status}</span> : <span className="res">{" "}</span>}</p>
@@ -99,6 +103,19 @@ function Details(){
             </div>
          </div>
       </div>
+      <div className="videos_container">
+         <h6 className="videos_heading">Related Videos</h6>
+         <div className="videos">
+            {video?.data?.results?.map((x)=> {
+               return(
+                  <div className='video' onClick={()=>{handleToggle();setVideoID(x.key)}} >
+                     <img src={`https://img.youtube.com/vi/${x.key}/mqdefault.jpg`}/>
+                     <img src={play_png}  style={{ "cursor": "pointer" }} className="play_icon" alt="" />
+                  </div>
+               )
+            })}
+         </div>
+      </div>
       <div className='casts_container'>
         <h5>Top Casts</h5>
         <div className='casts'>
@@ -117,6 +134,20 @@ function Details(){
                </div>)
            })}
         </div>
+      </div>
+      <div>
+      <div className="popular" >
+         <h6>Similar Movies</h6>
+        <div className={`cards`}>
+            {similarMovie?.data?.results?.map((result, i) => <Card result={result} mediaType={mediaType} key={i}/>) }
+        </div>
+      </div>
+      <div className="Recommendations" >
+         <h6>Recommendations</h6>
+        <div className={`cards`}>
+            {Recommendations?.data?.results?.map((result, i) => <Card result={result} mediaType={mediaType} key={i}/>) }
+        </div>
+      </div>
       </div>
       </>
    )

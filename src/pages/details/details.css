@@ -39,8 +39,6 @@
     margin: 2rem auto;
     grid-template-columns: 34% 64%;
     gap: 2%;
-    min-height: 100vh;
-    /* background-color: red; */
     overflow: hidden;
     color: #fff;
 }
@@ -105,8 +103,11 @@ padding-top: 0.6rem;
     color: #919191;
     font-size: 0.9rem;
 }
+.casts_container{
+    padding: 2rem 0;
+}
 .casts_container > h5{
-    padding: 0 0 0.6rem 0;
+    padding: 0.6rem 0;
     color: #fff;
     font-size: 2rem;
     width: 100%;
@@ -164,6 +165,7 @@ padding-top: 0.6rem;
     backdrop-filter: blur(3px);
     width: 100%;
     height: 100vh;
+    cursor: pointer;
 }
 .player{
     z-index: 102;
@@ -178,3 +180,62 @@ padding-top: 0.6rem;
     content: url('../../assets/play.gif');
     mix-blend-mode: multiply;
 }
+
+.videos_container{
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: column;
+}
+.videos_heading{
+    font-size: 5vh;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 0.4rem;
+}
+.videos{
+    display: flex;
+    overflow-x:scroll ;
+    overflow-y:hidden;
+}
+.casts::-webkit-scrollbar, .videos::-webkit-scrollbar {
+    height: 0.2rem; /* Set the height of the scroll bar */
+  }
+  
+  .casts::-webkit-scrollbar-thumb,.videos::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Set the color of the scroll thumb */
+  }
+  
+  .casts::-webkit-scrollbar-thumb:hover,.viedeos::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa; /* Set the color of the scroll thumb on hover */
+  }
+  
+  .casts::-webkit-scrollbar-corner,.videos::-webkit-scrollbar-corner {
+    background-color: transparent; /* Hide the scrollbar corner */
+  }
+
+.video{
+    margin:auto;
+    gap: 1rem;
+    cursor: pointer;
+    margin: 0.6rem;
+    position: relative;
+}
+.video img:first-of-type{
+    border-radius: 10px;
+}
+.video img:nth-child(2){
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.popular h6, .Recommendations h6{
+    color: #fff;
+    font-size: 5vh;
+    padding: 1rem 0;
+}
+.popular, .Recommendations{
+    padding: 1rem;
+}
+
