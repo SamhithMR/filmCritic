@@ -14,6 +14,7 @@ import Footer from './components/footer'
 import { useDispatch } from 'react-redux'
 import { useEffect } from "react";
 import { getGenres } from "./store/homeSlice";
+import ChatbotApp from './components/openAI'
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/Search/:query" element={<Search />}/>
           <Route path="/explore/:mediaType" element={<Explore />}/>
           <Route path="/Details/:mediaType/:id" element={<Details />}/>
+          <Route path="/ChatbotApp" element={<ChatbotApp />}/>
           <Route path="*" element={<PageNotFound />}/>
         </Routes>
         <Footer />

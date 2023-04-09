@@ -239,3 +239,67 @@ padding-top: 0.6rem;
     padding: 1rem;
 }
 
+.openAI{
+    padding: 1rem;
+    /* min-height: 30vh; */
+    background-color: #9191913f;
+}
+.openAI h6{
+    font-size: 4vh;
+    color: #fff;
+    padding: 0.6rem 0;
+}
+.openAI .form{
+    width: 80%;
+    margin: auto;
+    background-color: #b1b1b1b2;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.instructions{
+    display: flex;
+    gap: 2rem;
+}
+.openAI .form ul{
+    font-size: 0.6rem;
+    color: #fff;
+}
+button[type='submit']{
+    padding: 0.4em 0.6rem;
+}
+.input{
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input input{
+    padding: 0.4rem 0.6rem;
+    width: 20vw;
+}
+.input input:focus{
+   outline:none
+}
+.input label{
+    margin-right: 10px;
+}
+
+.GPT_response{
+    width: 94%;
+    margin: auto;
+    background-color: #232c4234;
+    padding: 1rem;
+    border-radius: 10px;
+    color: #f1f1f1;
+}
+.viewResponse{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bold{
+    padding: 0.6rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}

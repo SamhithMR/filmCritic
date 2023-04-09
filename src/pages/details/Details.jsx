@@ -12,6 +12,10 @@ import Card from '../../components/Card'
 
 import play_png from '../../assets/play.png'
 import VideoPopUp from '../../components/videoPopUp'
+import ChatbotApp from '../../components/openAI'
+
+import { useSelector, useDispatch } from 'react-redux'
+import {getApi} from '../../store/homeSlice'
 
 function Details(){
    const {id,mediaType} = useParams()
@@ -20,14 +24,19 @@ function Details(){
    const video= FetchData(`/${mediaType}/${id}/videos`);
    const similarMovie= FetchData(`/${mediaType}/${id}/similar`);
    const Recommendations= FetchData(`/${mediaType}/${id}/recommendations`);
-   
 
+   const dispatch = useDispatch()
+   
    const [isVisible, setIsVisible] = useState(false);
    const [videoId, setVideoID] = useState(false);
+
+   const [apiInput, setApiInput] = useState("")
+
    const handleToggle = () => {
      setIsVisible(!isVisible);
    };
- 
+
+   const count = useSelector((state) => state.home.API_KEY)
 
    const toHoursAndMinutes = (totalMinutes) => {
       const hours = Math.floor(totalMinutes / 60);
@@ -102,6 +111,51 @@ function Details(){
                </div>
             </div>
          </div>
+      </div>
+      <div className='openAI'>
+         <h6>Viewers Sentiment Analysis <span>(by chatGPT)</span></h6>
+         {count ? <ChatbotApp prompt={data && data?.title || data?.name}/> : 
+            <form className="form" onSubmit={(e)=>{e.preventDefault(); dispatch(getApi(apiInput))}}>
+               <div className="input">
+                  <label for="api-key">API Key:</label>
+                  <input type="text" value={apiInput} onChange={(e)=>(setApiInput(e.target.value))} placeholder='paste you API Key here' required />
+                  <button type="submit">Submit</button>
+               </div>
+               <div className="instructions">
+                  <div>
+                     <p>Instructions:</p>
+                     <ul>
+                        <li>Get your API key from the website.</li>
+                        <li>Paste your API key into the form field above.</li>
+                        <li>Click the "Submit" button.</li>
+                        <li>The sentiment of the viewers will be displayed below.</li>
+                        <li>To delete the API key, refresh the page or close the browser window.</li>
+                     </ul>
+                  </div>
+                  <div>
+                     <p>Token Usage:</p>
+                     <ul>
+                        <li>The API key will give you access to a limited number of tokens per month.</li>
+                        <li>The number of tokens used will depend on the length and complexity of your requests.</li>
+                        <li>Make sure to use the API key wisely and not waste tokens on unnecessary requests.</li>
+                        <li>If you exceed the monthly limit, you will have to wait until the next month to use the API again.</li>
+                     </ul>
+                  </div>
+                  <div>
+                     <p>Free Trial:</p>
+                     <ul>
+                        <li>You can get a free trial of the ChatGPT API by signing up on the website.</li>
+                        <li>The free trial will give you access to a limited number of tokens for a limited time.</li>
+                        <li>Make sure to check the website for more information on the free trial.</li>
+                     </ul>
+                  </div>
+               </div>
+            </form>
+         }
+         
+
+         <div id="sentiment"></div>
+
       </div>
       <div className="videos_container">
          <h6 className="videos_heading">Related Videos</h6>
