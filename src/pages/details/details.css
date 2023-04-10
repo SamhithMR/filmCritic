@@ -264,7 +264,7 @@ padding-top: 0.6rem;
     font-size: 0.6rem;
     color: #fff;
 }
-button[type='submit']{
+.openAI button[type='submit']{
     padding: 0.4em 0.6rem;
 }
 .input{
@@ -300,6 +300,6 @@ button[type='submit']{
 }
 .bold{
     padding: 0.6rem 0;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
 }

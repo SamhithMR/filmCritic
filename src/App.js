@@ -40,7 +40,6 @@ function App() {
           <Route path="/Search/:query" element={<Search />}/>
           <Route path="/explore/:mediaType" element={<Explore />}/>
           <Route path="/Details/:mediaType/:id" element={<Details />}/>
-          <Route path="/ChatbotApp" element={<ChatbotApp />}/>
           <Route path="*" element={<PageNotFound />}/>
         </Routes>
         <Footer />

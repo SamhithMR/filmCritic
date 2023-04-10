@@ -10,19 +10,17 @@ function ChatbotApp({prompt}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const result = await openai.createCompletion({
-    //     model: "text-davinci-003",
-    //     prompt: `Viewer sentiment for ${prompt}, pos & neg 5 each`,
-    //     temperature: 0.5,
-    //     max_tokens: 2000,
-    //   });
-      // setResponse(result.data.choices[0].text);
-      const result="\n\nPositive Sentiments:\n1. Amazing visuals and cinematography.\n2. Gripping story line and plot.\n3. Fantastic performances from the cast.\n4. Great action sequences and stunts.\n5. Spectacular soundtrack and background score.\n\nNegative Sentiments:\n1. Too much violence and gore.\n2. Poorly written dialogues.\n3. Unnecessary scenes and subplots.\n4. Lack of emotional depth in the characters.\n5. Overuse of computer-generated imagery."
-      setResponse(result);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const result = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `Viewer sentiment for ${prompt}, pos & neg 5 each`,
+        temperature: 0.5,
+        max_tokens: 2000,
+      });
+      setResponse(result.data.choices[0].text);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
 
@@ -32,7 +30,7 @@ function ChatbotApp({prompt}) {
       {response ?
          <div className="GPT_response" >
           {response.split("\n").map((x, i) => {
-            return x.includes("Positive") ?
+            return(["positive","Positive","negative","Negative"].some(el => x.includes(el))) ?
              <div className="bold">{x}</div> :
              <div key={i}>{x}</div>
             })}
