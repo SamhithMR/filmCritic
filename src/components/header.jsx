@@ -9,7 +9,7 @@ function Header(){
         <div className="header">
             <div className='wrapper'>
                 <div className="logo" style={{cursor:'pointer'}}>
-                        <img src={logo} onClick={()=>(navigate('/'))} alt="" />
+                    <img src={logo} onClick={()=>(navigate('/'))} alt="" />
                 </div>
                 <nav >
                    <a onClick={()=>(navigate(`explore/movie`))}>movie</a>

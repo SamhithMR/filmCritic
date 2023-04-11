@@ -1,5 +1,4 @@
 *{
-    /* outline: 1px solid red; */
     margin: 0;
     padding: 0;
 }
@@ -8,19 +7,16 @@ body{
 }
 .banner {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
-}
-.banaer_image{
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: red;
 }
 
 .banner img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 80vh;
     width: 100%;
-    height: 100%;
     object-fit: cover;
 }
 
@@ -46,6 +42,7 @@ body{
     font-weight: 900;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #bdbdbd;
+    padding: 2rem 0;
 }
 
 .banner_contents .input_feild {
@@ -57,6 +54,13 @@ body{
     padding: 1rem 0;
     border-radius: 50px;
     border: none;
+    text-indent: 5%;
+    font-weight: 700;
+    color: #5c5c5c;
+    letter-spacing: 2px;
+}
+.banner_contents input::placeholder{
+    color: #cbcbcb;
 }
 
 .banner_contents input:is(:focus, :hover){
@@ -82,37 +86,58 @@ body{
 }
 
 
-/***** popular *****/
-.popular {
-    margin: 2rem 0;
-    width: 100%;
-}
-
-.cards_heading {
+.trending_header {
     width: 95%;
-    margin: 3rem auto;
+    margin: 2rem auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.cards_heading h1{
+.trending_header h5{
     color: #ededed;
     font-size: 2rem;
+    font-weight: 800;
 }
-.cards_heading button, .custombutton{
-    margin: 0 0.4rem;
+.trending_header button{
     padding: 0.4rem;
     width: 6rem;
     font-size: 1rem;
     border: none;
-    border-radius:  10px;
+    border-radius:  50px;
 }
 
-.buttons{
+.switchTabs{
     background-color: #f1f1f1;
-    padding: 0.2rem;
-    border-radius: 10px;
+    padding: 0.1rem;
+    border-radius: 50px;
+    display: flex;
+    gap: 1rem;
 }
+
+@media screen and (max-width:1080px) {
+    .banner{
+        min-height: 50vh;
+    }
+    .banner_contents{
+        width: 90%;
+        /* top: 35%; */
+    }
+    .banner_contents h2 {
+        font-size: 7vh;
+    }
+    
+    .banner_contents p {
+        font-size: 3vh;
+        padding: 1rem 0;
+    }
+    .trending_header h5{
+        font-size: 1.5rem;
+    }
+    .switchTabs{
+        gap: 0.6rem;
+    }
+}
+
 .cards {
     display: flex;
     overflow-x: scroll;
@@ -128,7 +153,7 @@ body{
     margin: 1.5rem 0;
     overflow-x: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 2fr));
 }
 
 .cards::-webkit-scrollbar {
@@ -163,12 +188,26 @@ button{
 
 /* explore */
 .explore_selector{
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: end;
     gap: 1rem;
 }
-.abc{
+.selector{
     min-width: 18vw;
 }
+.explore_heading{
+    width: 100%;
+    text-align: center;
+    color: #fe5555;
+    font-size: 5vh;
+    font-weight: 700;
+    padding: 1rem 0;
+    text-transform: capitalize;
+}
+
 #filter{
     padding: 0.2rem 0.6rem;
 }
+

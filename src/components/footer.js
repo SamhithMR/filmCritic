@@ -11,7 +11,6 @@ function Footer(){
         <div className="footer">
            <div className='footer_links'>
                 <p>Terms Of Use</p>
-                <p>Privacy-Policy</p>
                 <p>About</p>
                 <p>Blog</p>
                 <p>FAQ</p>

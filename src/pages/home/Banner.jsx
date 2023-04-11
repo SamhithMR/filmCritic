@@ -17,7 +17,8 @@ function Banner(){
     
     return (
     <div className="banner">
-        <div className="banaer_image">{(loading || err) ? <BannerSkeleton/> : <Img url={image} alt="Banner image" />}</div>
+        {/* <div className="banaer_image">{(loading || err) ? <BannerSkeleton/> : <Img url={image} alt="Banner image" />}</div> */}
+        {(loading || err) ? <BannerSkeleton/> : <Img url={image} alt="Banner image" />}
         <div className="mask"></div>
         <div className="banner_contents">
             <h2>welcome.</h2>

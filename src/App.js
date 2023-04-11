@@ -1,20 +1,19 @@
 import { Route, Routes } from "react-router-dom"
+import { useDispatch } from 'react-redux'
+import { useEffect } from "react";
 
 import './App.css';
 import fetchDataFromApi from './utils/fetchDataFromApi'
+import { getGenres } from "./store/homeSlice";
 
 import Home from './pages/home/Home'
 import Explore from './pages/explore/Explore'
 import Details from './pages/details/Details'
 import Search from './pages/search/Search'
 import PageNotFound from './pages/pagenotfound/PageNotFound'
-
 import Header from './components/header'
 import Footer from './components/footer'
-import { useDispatch } from 'react-redux'
-import { useEffect } from "react";
-import { getGenres } from "./store/homeSlice";
-import ChatbotApp from './components/openAI'
+
 
 function App() {
 

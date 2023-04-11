@@ -27,7 +27,6 @@ function Img({ url }) {
           src={"https://image.tmdb.org/t/p/original" + url}
           onLoad={handleImageLoad}
           onError={handleImageError}
-          alt="Movie poster"
         />
       )
       }

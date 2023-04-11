@@ -1,7 +1,7 @@
 .details{
     position: relative;
     min-height: 100vh;
-    padding: 1rem 1rem 0 1rem;
+    padding: 1rem 0;
     background-color: #16253da9;
 }
 
@@ -63,6 +63,7 @@
     gap: 2rem;
 }
 .rating{
+    font-weight: 800;
     width: 14vh;
 }
 .details_contents{
@@ -111,7 +112,6 @@ padding-top: 0.6rem;
     color: #fff;
     font-size: 2rem;
     width: 100%;
-    padding-left: 2%;
 }
 .casts{
     display: flex;
@@ -176,10 +176,6 @@ padding-top: 0.6rem;
     border-radius: 10px;
 }
 
-.play_icon:hover{
-    content: url('../../assets/play.gif');
-    mix-blend-mode: multiply;
-}
 
 .videos_container{
     padding: 0.4rem;
@@ -223,8 +219,7 @@ padding-top: 0.6rem;
 .video img:first-of-type{
     border-radius: 10px;
 }
-.video img:nth-child(2){
-    border-radius: 10px;
+.video svg{
     position: absolute;
     left: 50%;
     top: 50%;
@@ -235,13 +230,12 @@ padding-top: 0.6rem;
     font-size: 5vh;
     padding: 1rem 0;
 }
-.popular, .Recommendations{
+.Recommendations{
     padding: 1rem;
 }
 
 .openAI{
     padding: 1rem;
-    /* min-height: 30vh; */
     background-color: #9191913f;
 }
 .openAI h6{
@@ -250,28 +244,38 @@ padding-top: 0.6rem;
     padding: 0.6rem 0;
 }
 .openAI .form{
-    width: 80%;
+    width: 90%;
     margin: auto;
-    background-color: #b1b1b1b2;
-    padding: 1rem;
+    background-color: #16253d93;
+    padding: 1rem 2rem;
     border-radius: 10px;
 }
 .instructions{
     display: flex;
     gap: 2rem;
 }
-.openAI .form ul{
-    font-size: 0.6rem;
+
+.openAI .form p{
+    font-size: 3vh;
     color: #fff;
+    font-weight: 900;
+}
+.openAI .form ul{
+    font-size: 0.8rem;
+    color: #e6e6e6a6;
 }
 .openAI button[type='submit']{
-    padding: 0.4em 0.6rem;
+    padding: 0.5em 0.6rem;
 }
 .input{
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding:2rem 0;
+    color:#fff;
+    font-weight: 800;
+    font-size: 3vh;
 }
 .input input{
     padding: 0.4rem 0.6rem;
@@ -303,3 +307,77 @@ padding-top: 0.6rem;
     font-size: 1.1rem;
     font-weight: 700;
 }
+
+@media screen and (max-width:1020px) {
+    .instructions{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .openAI .form{
+        padding: 1rem;
+    }
+    .input{
+        justify-content: start;
+    }
+    .input input{
+       min-width: 40vw;
+    }
+    .input label{
+        font-size: 1rem;
+        margin-right: 0;
+    }
+    .Details_banner{
+        grid-template-columns: 1fr;
+    }
+    .details_contents .details_title{
+        font-size: 2rem;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    
+    .overview p{
+    width: 100%;
+    }
+}
+
+.videoButton{
+    cursor: pointer;
+}
+.video_button svg {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+}
+.triangle {
+    stroke-dasharray: 240;
+    stroke-dashoffset: 480;
+    stroke: white;
+    transform: translateY(0);
+    transition: all 0.7s ease-in-out;
+}
+.circle {
+    stroke: white;
+    stroke-dasharray: 650;
+    stroke-dashoffset: 1300;
+    transition: all 0.5s ease-in-out;
+}
+
+.video svg:hover .triangle, .video_button:hover .triangle {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    stroke: #fe5555;
+    animation: trailorPlay 0.7s ease-in-out;
+}
+.video svg:hover .circle, .video_button:hover .circle {
+    stroke-dashoffset: 0;
+    stroke: #fe5555;
+}
+@keyframes trailorPlay {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  

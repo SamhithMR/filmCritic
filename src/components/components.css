@@ -12,6 +12,14 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:1080px) {
+    .card{
+        width: 200px;
+        height: 380px;
+    }
+}
+
+
 .card_img{
     border-radius: 15px;
     position: relative;
@@ -29,6 +37,10 @@
 .date{
     color: #a8a8a8;
 }
+.card_rating{
+    width: 50px;
+    height: 50px;
+}
 
 /* header */
 .header{
@@ -36,9 +48,6 @@
     backdrop-filter: blur(3px);
     width:100%;
     z-index:10;
-    /* position:absolute;
-    top:0;
-    left:0; */
     color:#fff;
 }
 .header .wrapper{
@@ -68,6 +77,8 @@
     color: #fff;
     padding: 0.4rem;
     cursor: pointer;
+    font-size: 3vh;
+    font-weight: 600;
 }
 .header a:hover{
     color: #fe5555;

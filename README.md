@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Film Critics
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A movie recommendation system built with ReactJS, utilizing ***ChatGPT's API and TMDB's API***  to fetch movie data. The system also uses Redux for state management and is fully responsive. By sending requests to the ChatGPT API, the system generates a summary of viewer sentiment and key topics related to a movie, providing users with more informed recommendations.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Live Demo
+**Check out the live demo [https://filmcritics.netlify.app](https://filmcritics.netlify.app)**
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Film Critics system is a movie and TV show recommendation platform that allows users to search, explore, and access information about their favorite movies and TV shows.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+One unique feature of the system is its integration with OpenAI's ChatGPT API. It provides users with a summary of reviews and comments related to a movie, including overall sentiment and key topics mentioned. This analysis allows users to make more informed decisions when choosing a movie to watch.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Home page (includes banner, recommendation, similarity, and top-rated components)
+- Explore page (both movie and TV)
+- Search page (used to search for movies and TV shows)
+- Details page (displays information for a specific movie)
+- **Viewer sentiment analysis using ChatGPT's API**
+- Infinite scrolling for browsing large amounts of data
+- Lazy loading for improved page load times
+- Multi-select dropdown for filtering results
+- Skeleton loading components for improved user experience
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- "@reduxjs/toolkit": "^1.9.3"
+- "axios": "^1.3.4"
+- "dayjs": "^1.11.7"
+- "dotenv": "^16.0.3"
+- "openai": "^3.2.1"
+- "react": "^18.2.0"
+- "react-circular-progressbar": "^2.1.0"
+- "react-dom": "^18.2.0"
+- "react-icons": "^4.8.0"
+- "react-infinite-scroll-component": "^6.1.0"
+- "react-lazy-load": "^4.0.1"
+- "react-loading-skeleton": "^3.2.0"
+- "react-multi-select-component": "^4.3.4"
+- "react-redux": "^8.0.5"
+- "react-router-dom": "^6.9.0"
+- "react-scripts": "5.0.1"
+- "react-youtube": "^10.1.0"
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+preview 1:-
+![Screenshot of My Project](./src/assets/longScreenShot.png)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+preview 2:-
+![Screenshot of My Project](./src/assets/longScreenShot2.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To run the project locally:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository: `git clone https://github.com/SamhithMR/filmCritic.git`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`

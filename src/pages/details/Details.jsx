@@ -1,7 +1,7 @@
 import './details.css'
 
 import { useParams } from 'react-router-dom'
-import React, { useEffect, useState } from "react"
+import React, {useState} from "react"
 import Img from '../../components/Img'
 import FetchData from '../../hooks/FetchData'
 import {BannerSkeleton,ImgSkeleton} from '../../components/Skeleton'
@@ -10,7 +10,8 @@ import { CircularProgressbar , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Card from '../../components/Card'
 
-import play_png from '../../assets/play.png'
+import {PlayIcon} from '../../assets/PlayIcon'
+
 import VideoPopUp from '../../components/videoPopUp'
 import ChatbotApp from '../../components/openAI'
 
@@ -29,6 +30,7 @@ function Details(){
    
    const [isVisible, setIsVisible] = useState(false);
    const [videoId, setVideoID] = useState(false);
+   const [apiErr, setApiErr] = useState('')
 
    const [apiInput, setApiInput] = useState("")
 
@@ -36,7 +38,7 @@ function Details(){
      setIsVisible(!isVisible);
    };
 
-   const count = useSelector((state) => state.home.API_KEY)
+   const UsersApiKey = useSelector((state) => state.home.API_KEY)
 
    const toHoursAndMinutes = (totalMinutes) => {
       const hours = Math.floor(totalMinutes / 60);
@@ -44,7 +46,21 @@ function Details(){
       return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
   };
 
+  const submitAPIKey = (e) =>{
+  e.preventDefault();
+  if(apiInput.length == 51 && apiInput.startsWith("sk-"))
+     {
+      dispatch(getApi(apiInput))
+      
+   }
+
+   else{
+      setApiErr("invalid api key")
+   }
+  }
+
    return (
+
       <>
       {/* <p>{video?.data?.results?.[0].key}</p> */}
       {isVisible ?<VideoPopUp handleToggle={handleToggle} videoId={videoId}/>: ""}
@@ -77,16 +93,16 @@ function Details(){
                               buildStyles({
                                  backgroundColor: 'transparent',
                                  textColor: "#fff",
-                                 pathColor: `${data?.vote_average > 6.5  ? "#389438" : data?.vote_average < 3.0 ? "#fe5555" : "#658ac5"}`,
+                                 pathColor: `${data?.vote_average > 8.5 ? "#74bd5d" : data?.vote_average < 3.0 ? "#FF3B28" : "#f7ad19"}`,
                                  trailColor: "transparent",
-                                 textSize: '13px'
+                                 textSize: '20px'
                               })
                         } 
-                        text={`${data?.vote_average * 10}%`}/>
+                        text={`${data?.vote_average && (data?.vote_average).toFixed(1)}`}/>
                   </div>
-                  <div className='video_button'>
-                  <img src={play_png} onClick={() => { handleToggle(); setVideoID(video?.data?.results?.[0].key) }} style={{ "cursor": "pointer" }} className="play_icon" alt="" />
-                     {/* {isVisible ?<VideoPopUp handleToggle={handleToggle} videoId={video?.data?.results?.[0].key}/>: ""} */}
+                  <div className='video_button' onClick={() => { handleToggle(); setVideoID(video?.data?.results?.[0].key) }}>
+                     {video?.data?.results?.[0] && <PlayIcon className="videoButton" />}
+                     {isVisible ?<VideoPopUp handleToggle={handleToggle} videoId={video?.data?.results?.[0].key}/>: ""}
                   </div>
                </div>
                <div className="overview">
@@ -113,19 +129,20 @@ function Details(){
          </div>
       </div>
       <div className='openAI'>
-         <h6>Viewers Sentiment Analysis <span>(by chatGPT)</span></h6>
-         {count ? <ChatbotApp prompt={data && data?.title || data?.name}/> : 
-            <form className="form" onSubmit={(e)=>{e.preventDefault(); dispatch(getApi(apiInput))}}>
+         <h6>Viewers Sentiment Analysis <span style={{color:'#fe5555'}}>(by chatGPT)</span></h6>
+         {UsersApiKey ? <ChatbotApp prompt={data && data?.title || data?.name}/> : 
+            <form className="form" onSubmit={submitAPIKey}>
                <div className="input">
                   <label for="api-key">API Key:</label>
                   <input type="text" value={apiInput} onChange={(e)=>(setApiInput(e.target.value))} placeholder='paste you API Key here' required />
                   <button type="submit">Submit</button>
                </div>
+               <span style={{width:'100%', display:'block',textAlign:'center', color:'red'}}>{apiErr}</span>
                <div className="instructions">
                   <div>
                      <p>Instructions:</p>
                      <ul>
-                        <li>Get your API key from the website.</li>
+                        <li>Get your API key from <a href='https://platform.openai.com/account/api-keys' target='_blank' style={{textDecoration:'underline', fontSize:'1rem', color:'#7968bb' }}>openAI.com</a>.</li>
                         <li>Paste your API key into the form field above.</li>
                         <li>Click the "Submit" button.</li>
                         <li>The sentiment of the viewers will be displayed below.</li>
@@ -136,7 +153,7 @@ function Details(){
                      <p>Token Usage:</p>
                      <ul>
                         <li>The API key will give you access to a limited number of tokens per month.</li>
-                        <li>The number of tokens used will depend on the length and complexity of your requests.</li>
+                        <li>The number of tokens used will depend on the movie name and the result (max:-2000 tokens)</li>
                         <li>Make sure to use the API key wisely and not waste tokens on unnecessary requests.</li>
                         <li>If you exceed the monthly limit, you will have to wait until the next month to use the API again.</li>
                      </ul>
@@ -152,24 +169,23 @@ function Details(){
                </div>
             </form>
          }
-         
 
          <div id="sentiment"></div>
 
       </div>
-      <div className="videos_container">
+      {video?.data?.results?.[0] && <div className="videos_container">
          <h6 className="videos_heading">Related Videos</h6>
          <div className="videos">
             {video?.data?.results?.map((x)=> {
                return(
                   <div className='video' onClick={()=>{handleToggle();setVideoID(x.key)}} >
                      <img src={`https://img.youtube.com/vi/${x.key}/mqdefault.jpg`}/>
-                     <img src={play_png}  style={{ "cursor": "pointer" }} className="play_icon" alt="" />
+                     <PlayIcon className="videoButton"/>
                   </div>
                )
             })}
          </div>
-      </div>
+      </div>}
       <div className='casts_container'>
         <h5>Top Casts</h5>
         <div className='casts'>
@@ -190,18 +206,18 @@ function Details(){
         </div>
       </div>
       <div>
-      <div className="popular" >
+      {similarMovie?.data?.results?.[0] && <div className="popular" >
          <h6>Similar Movies</h6>
         <div className={`cards`}>
             {similarMovie?.data?.results?.map((result, i) => <Card result={result} mediaType={mediaType} key={i}/>) }
         </div>
-      </div>
-      <div className="Recommendations" >
+      </div>}
+     {Recommendations?.data?.results?.[0] && <div className="Recommendations" >
          <h6>Recommendations</h6>
         <div className={`cards`}>
             {Recommendations?.data?.results?.map((result, i) => <Card result={result} mediaType={mediaType} key={i}/>) }
         </div>
-      </div>
+      </div>}
       </div>
       </>
    )

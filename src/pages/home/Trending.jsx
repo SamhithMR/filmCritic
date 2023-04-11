@@ -5,17 +5,20 @@ import Carosel from "../../components/carosel"
 function Trending(){
     
     const [endpoint, setendPoint] = useState('day')
-    const setEndpoint= (value) =>{
-        setendPoint(value)
-    }
-    
-    const [endpoint2, setendPoint2] = useState('movie')
-    const setEndpoint2= (value) =>{
-        setendPoint2(value)
-    }
-    const { data, loading } = FetchData(`/trending/${endpoint2}/${endpoint}`)
+
+    const { data, loading } = FetchData(`/trending/movie/${endpoint}`)
     return(
-        <Carosel heading={"Trending"} data={data} loading={loading} endpoint={endpoint} endpoint2={endpoint2} endpoints={['day','week', 'movie', 'tv']} setEndpoint2={setEndpoint2} setEndpoint={setEndpoint}/>
+
+        <div className="trending">
+            <div className="trending_header">
+                <h5>Trending</h5>
+                <div className="switchTabs">
+                    <button style={{"background":`${endpoint === 'week' ? '#bdbdbd' : '#fe5555'}`}} onClick={()=>(setendPoint('day'))}>day</button>
+                    <button style={{"background":`${endpoint === 'week' ? '#fe5555' : '#bdbdbd'}`}} onClick={()=>(setendPoint('week'))}>week</button>
+                </div>
+            </div>
+            <Carosel data={data && data} loading={loading} mediaType={'movie'}/>
+        </div>
         )
     }
     

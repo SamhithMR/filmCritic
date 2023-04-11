@@ -1,41 +1,44 @@
 import Img from './Img'
 import './components.css'
-import dayjs from 'dayjs'
 import { CircularProgressbar , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Card({result, mediaType}){
-    const navigate = useNavigate()
-    
-const [value, setValue] = useState(result?.vote_average)
+function Card({result, mediaType}) {
+  const navigate = useNavigate();
 
-    return (
-    <div className='card' onClick={()=>(navigate(`/Details/${mediaType}/${result?.id}`))}>
-        <div className='card_img'>
-            <Img url={result?.poster_path}/>
-            <div style={{ width: 40, height: 40, "position": "absolute", "left":"0.5rem", "bottom":"-1rem"}}>
-                <CircularProgressbar
-                    maxValue={10} 
-                    value={value} 
-                    background
-                    backgroundPadding={6}
-                    styles={
-                        buildStyles({
-                            backgroundColor: `${value > 6.5  ? "#389438" : value < 3.0 ? "#fe5555" : "#658ac5"}`,
-                            textColor: "#fff",
-                            pathColor: "#fff",
-                            trailColor: "transparent"
-                        })
-                    } 
-                    text={`${value * 10}%`}/>
-            </div>
+  const {id, title, poster_path, release_date, vote_average, first_air_date} = result || {};
+
+  const styles = useMemo(() => buildStyles({
+    backgroundColor: '#fff',
+    textColor: "#000",
+    pathColor:  `${vote_average > 8.5 ? "#74bd5d" : vote_average < 3.0 ? "#FF3B28" : "#f7ad19"}`,
+    trailColor: "transparent",
+    textSize:'28px'
+  }), [vote_average]);
+
+  return (
+    <div className='card' onClick={()=> navigate(`/Details/${mediaType}/${id}`)}>
+      <div className='card_img'>
+        <Img url={poster_path || 'placeholder.jpg'}/>
+        <div className='card_rating' style={{ position: 'absolute', bottom: '-1rem', left: '0.5rem', fontWeight:'800',fontSize:'1.5rem'}}>
+          <CircularProgressbar
+            maxValue={10} 
+            value={vote_average} 
+            background
+            backgroundPadding={6}
+            styles={styles}
+            text={`${(vote_average).toFixed(1)}`}
+          />
         </div>
-        <div className='card_content'>
-            <p>{result?.title}</p>
-            <p className='date'> {dayjs(result.release_Date).format("MMM D, YYYY")}</p>
-        </div>
-    </div>)
+      </div>
+      <div className='card_content'>
+        <p>{title}</p>
+        <p className='date'>{new Date(release_date || first_air_date).toLocaleDateString()}</p>
+      </div>
+    </div>
+  );
 }
-export default Card
+
+export default Card;
